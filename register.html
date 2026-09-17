@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+    <!-- 引入外部CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <h1>用户注册</h1>
+    </header>
+
+    <!-- 主体区域 -->
+    <main>
+        <!-- 表格区域：会员权益对比（必须使用th, thead, tbody, colspan） -->
+        <h2>会员权益对比</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>权益</th>
+                    <th>普通会员</th>
+                    <th>高级会员</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>专属客服</td>
+                    <td>不支持</td>
+                    <td>支持</td>
+                </tr>
+                <tr>
+                    <td colspan="2">限时优惠（普通/高级会员同享）</td>
+                    <td>领取</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <!-- 列表区域1：无序列表 -->
+        <h3>注册流程</h3>
+        <ul>
+            <li>填写并提交下方表单</li>
+            <li>查收邮件激活账号</li>
+            <li>登录并完善个人资料</li>
+        </ul>
+
+        <!-- 列表区域2：有序列表 -->
+        <h3>注册步骤说明</h3>
+        <ol>
+            <li>阅读并同意用户协议</li>
+            <li>填写基本信息与联系方式</li>
+            <li>完成邮箱与手机号验证</li>
+        </ol>
+
+        <hr>
+
+        <!-- 注册表单（核心部分） -->
+        <h2>填写注册信息</h2>
+        <form id="registerForm" action="#" method="POST">
+            <!-- 用户名（required必填） -->
+            <p>
+                <label for="username">用户名：</label>
+                <input type="text" name="username" id="username" required>
+            </p>
+
+            <!-- 密码（placeholder占位提示） -->
+            <p>
+                <label for="password">密码：</label>
+                <input type="password" name="password" id="password" placeholder="6-16位字符" required>
+            </p>
+
+            <!-- 确认密码 -->
+            <p>
+                <label for="confirmPassword">确认密码：</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" required>
+            </p>
+
+            <!-- 性别（radio单选，label的for/id用法） -->
+            <p>
+                性别：
+                <input type="radio" name="gender" id="male" value="male" checked>
+                <label for="male">男</label>
+                <input type="radio" name="gender" id="female" value="female">
+                <label for="female">女</label>
+            </p>
+
+            <!-- 出生日期（date类型） -->
+            <p>
+                <label for="birthday">出生日期：</label>
+                <input type="date" name="birthday" id="birthday">
+            </p>
+
+            <!-- 邮箱（email类型，required必填） -->
+            <p>
+                <label for="email">邮箱：</label>
+                <input type="email" name="email" id="email" required>
+            </p>
+
+            <!-- 手机号（tel类型，pattern正则校验） -->
+            <p>
+                <label for="phone">手机号：</label>
+                <input type="tel" name="phone" id="phone" pattern="[0-9]{11}" placeholder="请输入11位手机号">
+            </p>
+
+            <!-- 兴趣爱好（checkbox多选，至少3个） -->
+            <p>
+                兴趣爱好：
+                <input type="checkbox" name="hobby" value="reading" id="hobby1">
+                <label for="hobby1">阅读</label>
+                <input type="checkbox" name="hobby" value="music" id="hobby2">
+                <label for="hobby2">音乐</label>
+                <input type="checkbox" name="hobby" value="sports" id="hobby3">
+                <label for="hobby3">运动</label>
+            </p>
+
+            <!-- 头像上传（file类型，accept限制图片，multiple多选） -->
+            <p>
+                <label for="avatar">头像上传：</label>
+                <input type="file" name="avatar" id="avatar" accept="image/*" multiple>
+            </p>
+
+            <!-- 所在城市（select下拉框，至少3个选项，默认选中一个） -->
+            <p>
+                <label for="city">所在城市：</label>
+                <select name="city" id="city">
+                    <option value="beijing">北京</option>
+                    <option value="shanghai">上海</option>
+                    <option value="changsha" selected>长沙</option>
+                </select>
+            </p>
+
+            <!-- 个人简介（textarea多行文本） -->
+            <p>
+                <label for="bio">个人简介：</label><br>
+                <textarea name="bio" id="bio" rows="4" cols="50" placeholder="介绍一下你自己吧..."></textarea>
+            </p>
+
+            <!-- 提交与重置按钮 -->
+            <p>
+                <button type="submit">注册</button>
+                <button type="reset">重置</button>
+            </p>
+        </form>
+
+        <hr>
+
+        <!-- 列表区域3：定义列表（老师要求至少两处，这个也可以作为备选） -->
+        <h3>常见问题</h3>
+        <dl>
+            <dt>忘记密码怎么办？</dt>
+            <dd>可通过注册邮箱或手机号找回。</dd>
+            <dt>能否修改用户名？</dt>
+            <dd>注册后用户名不可修改，请谨慎填写。</dd>
+        </dl>
+    </main>
+
+    <!-- 底部区域 -->
+    <footer>
+        <p>© 2026 杨亦航 个人注册页面</p>
+    </footer>
+
+    <!-- JavaScript：监听表单提交，在Console打印数据 -->
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // 阻止表单默认提交刷新页面的行为
+            
+            // 收集表单数据
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                if(data[key]) {
+                    // 如果是checkbox多选，需要转为数组
+                    if(Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            });
+            
+            console.log("【表单提交数据】", data);
+            alert("数据已成功打印到控制台 (Console)，请按F12查看！");
+        });
+    </script>
+</body>
+</html>
